@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PC Сервис и Сборка</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255,255,255,0.06);
+      --accent: #60a5fa;
+      --accent2: #22d3ee;
+      --accent3: #a78bfa;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --glass: blur(14px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: radial-gradient(circle at top, #111827, #020617);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 6s linear infinite;
+    }
+
+    header p {
+      color: var(--muted);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    section {
+      padding: 3.5rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: var(--glass);
+      border-radius: 18px;
+      padding: 1.6rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform .35s ease, box-shadow .35s ease, border .35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.12), transparent);
+      opacity: 0;
+      transition: opacity .4s ease;
+    }
+
+    .card:hover::after { opacity: 1; }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 30px 60px rgba(0,0,0,.6);
+      border: 1px solid rgba(96,165,250,0.4);
+    }
+
+    .price { color: var(--accent2); font-weight: bold; margin-top: .4rem; }
+
+    /* Configurator */
+    .configurator .card { max-width: 600px; margin: auto; }
+
+    .configurator label {
+      display: block;
+      margin-top: .8rem;
+      margin-bottom: .2rem;
+      color: var(--muted);
+    }
+
+    .configurator select {
+      width: 100%;
+      padding: .65rem .7rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(2,6,23,0.8);
+      color: var(--text);
+      outline: none;
+      transition: border .25s ease, box-shadow .25s ease;
+    }
+
+    .configurator select:focus {
+      border: 1px solid var(--accent);
+      box-shadow: 0 0 0 2px rgba(96,165,250,.25);
+    }
+
+    .total {
+      font-size: 1.4rem;
+      margin-top: 1.4rem;
+      text-align: center;
+      color: var(--accent);
+    }
+
+    footer {
+      background: #020617;
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+      text-align: center;
+    }
+
+    footer p { color: var(--muted); margin-bottom: .4rem; }
+
+    @keyframes glow {
+      0% { filter: drop-shadow(0 0 6px rgba(96,165,250,.2)); }
+      50% { filter: drop-shadow(0 0 14px rgba(167,139,250,.5)); }
+      100% { filter: drop-shadow(0 0 6px rgba(96,165,250,.2)); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>PC Сервис и Сборка</h1>
+  <p>Ремонт, чистка и сборка компьютеров. Спокойно, аккуратно и по честным ценам.</p>
+</header>
+
+<section>
+  <h2>Услуги</h2>
+  <div class="grid">
+    <div class="card"><h3>Ремонт ПК</h3><p>Диагностика, замена комплектующих, Windows.</p><p class="price">от 30$</p></div>
+    <div class="card"><h3>Чистка ПК</h3><p>Пыль, термопаста, охлаждение.</p><p class="price">от 20$</p></div>
+    <div class="card"><h3>Сборка ПК</h3><p>Игровые и рабочие конфигурации.</p><p class="price">от 50$</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Примеры сборок</h2>
+  <div class="grid">
+    <div class="card"><h3>Игровой ПК</h3><p>Ryzen 5 • RTX 3060 • 16GB</p><p class="price">~900$</p></div>
+    <div class="card"><h3>Офисный ПК</h3><p>Core i5 • iGPU • 16GB</p><p class="price">~550$</p></div>
+    <div class="card"><h3>Для работы</h3><p>Ryzen 7 • RTX 4070 • 32GB</p><p class="price">~1500$</p></div>
+  </div>
+</section>
+
+<section class="configurator">
+  <h2>Конфигуратор ПК</h2>
+  <div class="card">
+    <label>Процессор</label>
+    <select class="part">
+      <option value="180">Intel Core i3 / Ryzen 3 — 180$</option>
+      <option value="260">Intel Core i5 / Ryzen 5 — 260$</option>
+      <option value="380">Intel Core i7 / Ryzen 7 — 380$</option>
+    </select>
+
+    <label>Видеокарта</label>
+    <select class="part">
+      <option value="0">Встроенная — 0$</option>
+      <option value="280">GTX 1660 / RX 6600 — 280$</option>
+      <option value="600">RTX 4070 — 600$</option>
+    </select>
+
+    <label>Оперативная память</label>
+    <select class="part">
+      <option value="70">16 GB — 70$</option>
+      <option value="140">32 GB — 140$</option>
+    </select>
+
+    <label>Накопитель</label>
+    <select class="part">
+      <option value="60">SSD 1 TB — 60$</option>
+      <option value="120">SSD 2 TB — 120$</option>
+    </select>
+
+    <label>Корпус + БП</label>
+    <select class="part">
+      <option value="120">Базовый — 120$</option>
+      <option value="200">Хорошее охлаждение — 200$</option>
+    </select>
+
+    <div class="total">Итоговая цена: <span id="total">0</span>$</div>
+  </div>
+</section>
+
+<footer>
+  <h2>Контакты</h2>
+  <p>📞 Телефон: +123 456 789</p>
+  <p>📧 Email: your@email.com</p>
+  <p>📍 Город</p>
+</footer>
+
+<script>
+  const parts = document.querySelectorAll('.part');
+  const totalEl = document.getElementById('total');
+
+  function calc() {
+    let sum = 0;
+    parts.forEach(p => sum += Number(p.value));
+    totalEl.textContent = sum;
+  }
+
+  parts.forEach(p => p.addEventListener('change', calc));
+  calc();
+</script>
+
+</body>
+</html>
